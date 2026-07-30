@@ -1,0 +1,61 @@
+{
+  "skill_name": "logic-self-test",
+  "evals": [
+    {
+      "id": 1,
+      "name": "basic-plan-review",
+      "prompt": "Tôi mới lập plan cho tính năng quản lý inventory trong game. Self-test hộ tôi plan này với basic mode.",
+      "expected_output": "Self-test report with basic mode analysis of the inventory plan",
+      "files": [],
+      "assertions": [
+        "Report has 'Level: Basic' header indicating correct mode selection",
+        "Contains 3+ test examples covering normal, special, and edge cases",
+        "Has Correctness Check section with examples",
+        "Has Performance section",
+        "Has Extensibility & Maintainability section",
+        "Has Risk Assessment with impact, recommendation, and improvement outcome",
+        "Has Improvement Suggestions with priority ranking",
+        "Does NOT contain a full code implementation of the reviewed feature"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "advanced-complex-plan-review",
+      "prompt": "Mình có plan cho hệ thống đồng bộ dữ liệu giữa client và server cho game online. Dùng advanced mode để self-test plan này.",
+      "expected_output": "Self-test report with advanced mode analysis of the sync system plan",
+      "files": [],
+      "assertions": [
+        "Report has 'Level: Advanced' header indicating correct mode selection",
+        "Contains 5+ test examples covering normal, special, and edge cases",
+        "Has Security analysis section",
+        "Has Performance section with complexity table",
+        "Has Extensibility section discussing coupling and abstractions",
+        "Has Maintainability section covering error handling, logging, testability",
+        "Has Risk Assessment table with risk, impact, recommendation, and improvement outcome",
+        "Mentions clock drift or timestamp synchronization as a risk",
+        "Mentions retry storm or reconnect storm as a risk",
+        "Has Improvement Suggestions with priority ordering",
+        "Does NOT contain a full code implementation"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "advanced-code-review",
+      "prompt": "Tôi vừa implement xong đoạn code QuestRewardHandler. Self-test advanced mode giúp tôi.",
+      "expected_output": "Self-test report with advanced mode analysis of the QuestRewardHandler code",
+      "files": [],
+      "assertions": [
+        "Report has 'Level: Advanced' header indicating correct mode selection",
+        "Contains 5+ test examples covering normal, special, and edge cases",
+        "Identifies the 'remove before save' ordering bug as a critical issue",
+        "Identifies race condition / lack of thread safety as a risk",
+        "Has Performance section with complexity analysis",
+        "Has Security section",
+        "Has Extensibility & Maintainability sections",
+        "Has Risk Assessment with impact, recommendation, and improvement outcome",
+        "Has Improvement Suggestions with priority ordering",
+        "Does NOT contain a full fixed code implementation of the reviewed code"
+      ]
+    }
+  ]
+}
