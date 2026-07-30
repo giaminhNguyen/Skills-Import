@@ -1,0 +1,26 @@
+{
+  "$schema": "./config/mapping-schema.json",
+  "repo": {
+    "path": "C:\\Users\\minhng\\skills-repo",
+    "remote": "https://github.com/your-username/skills-repo.git"
+  },
+  "agent_skills": {
+    "opencode": {
+      "dirs": ["%USERPROFILE%\\.config\\opencode\\skills"]
+    },
+    "claude": {
+      "dirs": ["%USERPROFILE%\\Desktop\\Projects\\.claude\\skills"]
+    },
+    "gemini": {
+      "dirs": ["%USERPROFILE%\\.gemini\\skills"]
+    },
+    "codex": {
+      "dirs": ["%USERPROFILE%\\.codex\\skills"]
+    },
+    "antigravity": {
+      "dirs": ["%USERPROFILE%\\.antigravity\\skills"]
+    }
+  },
+  "exclude": ["private-*", "*-local", "temp-*"],
+  "default_agent": "opencode"
+}
