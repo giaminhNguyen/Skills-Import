@@ -1,0 +1,56 @@
+{
+  "skill_name": "session-continuity",
+  "evals": [
+    {
+      "id": 0,
+      "name": "save-session-basic",
+      "prompt": "Tôi làm vi?c c? bu?i sáng r?i, s?a xong cái bug trong PlayerController.cs, dang làm d? cái inventory system. Mai tôi làm ti?p. Luu session giúp tôi.",
+      "expected_output": "A .md file saved to .opencode/sessions/ capturing the session context including the bug fix in PlayerController.cs and the in-progress inventory system work, with clear next steps.",
+      "files": [],
+      "assertions": [
+        {"name": "session_file_created", "description": "A .md session file was created in .opencode/sessions/ directory"},
+        {"name": "has_required_sections", "description": "File contains at least: What we were working on, Done, In progress, Next steps, Decisions locked"},
+        {"name": "mentions_player_controller", "description": "File references PlayerController.cs"},
+        {"name": "has_next_steps", "description": "File includes concrete Next steps section"}
+      ]
+    },
+    {
+      "id": 1,
+      "name": "restore-session-and-continue",
+      "prompt": "Ð?c file .opencode/sessions/2026-07-30-1103-fix-player-bug.md và tôi mu?n làm ti?p.",
+      "expected_output": "Agent reads the file, summarizes the session (fix-player-bug), states what was in progress and next steps, then waits for user command.",
+      "files": [],
+      "assertions": [
+        {"name": "acknowledged_session", "description": "Response acknowledges the session title or topic (Fix PlayerController null reference bug)"},
+        {"name": "summarized_in_progress", "description": "Mentions what was in progress (inventory system / InventoryComponent)"},
+        {"name": "stated_next_step", "description": "Mentions a concrete next step (implement RemoveItem / create UI)"},
+        {"name": "did_not_auto_execute", "description": "Agent did NOT start implementing code automatically — waited for user command"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "save-with-explicit-path",
+      "prompt": "/save-session C?n luu cái này g?p tru?c khi t?t máy",
+      "expected_output": "Session saved with default path naming, covering all context sections.",
+      "files": [],
+      "assertions": [
+        {"name": "session_file_created", "description": "A .md session file was created"},
+        {"name": "has_done_section", "description": "File contains a 'Done' section"},
+        {"name": "has_in_progress_section", "description": "File contains 'In progress' section"},
+        {"name": "has_next_steps", "description": "File includes Next steps"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "restore-list-sessions",
+      "prompt": "/load",
+      "expected_output": "Agent lists available session files from .opencode/sessions/ and asks user to pick one.",
+      "files": [],
+      "assertions": [
+        {"name": "listed_or_loaded", "description": "Agent either listed available sessions or loaded the existing session"},
+        {"name": "no_auto_execute", "description": "Agent did not start implementing code"},
+        {"name": "waited_for_user", "description": "Agent asked user what to do next or waited for command"}
+      ]
+    }
+  ]
+}
