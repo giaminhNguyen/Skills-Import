@@ -1,0 +1,25 @@
+{
+  "name": "figma-mcp-go",
+  "description": "Đọc và ghi dữ liệu Figma trực tiếp qua plugin bridge — không cần Figma API token, không giới hạn rate limit. Cung cấp 73 tool để đọc document, tạo/sửa node, quản lý style, variable và export.",
+  "version": "0.1.3",
+  "author": {
+    "name": "vkhanhqui",
+    "url": "https://github.com/vkhanhqui"
+  },
+  "homepage": "https://github.com/vkhanhqui/figma-mcp-go",
+  "repository": "https://github.com/vkhanhqui/figma-mcp-go",
+  "license": "MIT",
+  "keywords": [
+    "figma",
+    "mcp",
+    "design",
+    "design-to-code",
+    "unity"
+  ],
+  "mcpServers": {
+    "figma-mcp-go": {
+      "command": "npx",
+      "args": ["-y", "@vkhanhqui/figma-mcp-go@0.1.3"]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "widogame-figma",
+  "metadata": {
+    "description": "Marketplace nội bộ WidoGame — cầu nối Figma ↔ Claude qua MCP"
+  },
+  "owner": {
+    "name": "WidoGame"
+  },
+  "plugins": [
+    {
+      "name": "figma-mcp-go",
+      "source": "./",
+      "description": "Figma MCP server không cần API token, không rate limit. Đi kèm Figma plugin bridge trong repo này.",
+      "category": "design"
+    }
+  ]
+}
