@@ -24,7 +24,7 @@ This skill extracts, structures, and caches relevant GDD sections so that:
 | 1 | GDD document (xlsx, md, pdf) in project | **Authoritative** — single source of truth |
 | 2 | User clarification in conversation | **Authoritative** — designer override |
 | 3 | Existing code implementation | **Reference** — may be outdated vs GDD |
-| 4 | Memory cache (`.claude/memory/gdd-cache/`) | **Derived** — regenerate if stale |
+| 4 | Memory cache (`.Codex/memory/gdd-cache/`) | **Derived** — regenerate if stale |
 
 ---
 
@@ -36,7 +36,7 @@ This skill extracts, structures, and caches relevant GDD sections so that:
           └──────┬───────┘
                  │
           ┌──────▼───────┐
-          │ CHECK CACHE  │ ← .claude/memory/gdd-cache/{feature}.md
+          │ CHECK CACHE  │ ← .Codex/memory/gdd-cache/{feature}.md
           └──────┬───────┘
             HIT  │  MISS/STALE
       ┌──────────┴──────────┐
@@ -88,7 +88,7 @@ Find the Game Design Document in the project.
 3. If multiple GDDs found:
    - Check file modification dates — prefer most recent
    - If ambiguous, ASK user which GDD to use
-   - Store the selected GDD path in .claude/memory/gdd-cache/_gdd_source.md
+   - Store the selected GDD path in .Codex/memory/gdd-cache/_gdd_source.md
 ```
 
 ### Output:
@@ -129,9 +129,9 @@ Structure the raw GDD data into an actionable spec. See `reference/parsing-proce
 
 ## Phase 4: CACHE
 
-Store the extracted spec for reuse. Cache location: `.claude/memory/gdd-cache/`
+Store the extracted spec for reuse. Cache location: `.Codex/memory/gdd-cache/`
 
-After extracting a spec, write it to `.claude/memory/gdd-cache/{feature-slug}.md` and update `_index.md`.
+After extracting a spec, write it to `.Codex/memory/gdd-cache/{feature-slug}.md` and update `_index.md`.
 
 **Freshness check**: Compare GDD last-modified timestamp to cache timestamp. If GDD was modified after cache was written, re-parse (cache is STALE). See `reference/parsing-procedures.md` for cache format specification and anti-patterns.
 
