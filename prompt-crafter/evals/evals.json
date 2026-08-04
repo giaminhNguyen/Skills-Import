@@ -1,0 +1,23 @@
+{
+  "skill_name": "prompt-crafter",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Tôi cần 1 script PowerShell xóa file .log cũ hơn 7 ngày trong thư mục C:\\Logs",
+      "expected_output": "Prompt tiếng Việt có cấu trúc Context → Goal → Constraints → Output format, đưa ra yêu cầu script PowerShell xóa file .log cũ hơn 7 ngày, có dry-run mode, chỉ xóa file .log",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Viết prompt để agent tạo 1 UI màn hình login Unity (username, password, nút login, validation cơ bản)",
+      "expected_output": "Prompt tiếng Việt có cấu trúc rõ ràng, mô tả UI login Unity với username/password field, nút login, validation, dùng UI Toolkit hoặc uGUI",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Có 1 cái bug, agent toàn hiểu sai khi tôi bảo sửa, viết hộ prompt để nói chuyện với agent về bug",
+      "expected_output": "Prompt tiếng Việt có cấu trúc, hướng dẫn cách mô tả bug gồm symptom, root cause, file/dòng code, expected behavior",
+      "files": []
+    }
+  ]
+}
