@@ -1,0 +1,26 @@
+{
+  "skill_name": "skill-manager",
+  "evals": [
+    {
+      "id": 1,
+      "name": "export-skill-to-repo",
+      "prompt": "Lưu toàn bộ skills opencode của tôi lên repo skills. Lưu ý test harness: hãy coi <SANDBOX>\\sandbox-export là thư mục dự án làm việc của bạn (cwd), repo skills là <SANDBOX>\\sandbox-export\\skills-repo, và chỉ dùng scope Project. TUYỆT ĐỐI không được đọc hay sửa bất cứ thứ gì ngoài <SANDBOX>. Khi skill hỏi chọn, chọn 'All' (a). Khi skill hỏi cập nhật skill khác phiên bản, trả lời 'y' (cập nhật theo local). Khi hỏi push, trả lời không push.",
+      "expected_output": "Export alpha-skill, beta-skill, gamma-skill (mới) vào repo + nhận diện diff-skill ⚠️ khác phiên bản rồi cập nhật repo theo local. Commit từng skill riêng 'skill-manager: add <tên>'. Không push. Bảng + tóm tắt 1 dòng.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "import-skill-from-repo",
+      "prompt": "Kéo skill từ repo skills về máy. Lưu ý test harness: hãy coi <SANDBOX>\\sandbox-import là thư mục dự án làm việc của bạn (cwd), repo skills là <SANDBOX>\\sandbox-import\\skills-repo, chỉ dùng scope Project và agent opencode. TUYỆT ĐỐI không được đọc hay sửa bất cứ thứ gì ngoài <SANDBOX>. Khi được hỏi, chọn import tất cả (a) và agent opencode. Khi skill hỏi overwrite skill khác phiên bản (diff-skill), trả lời 'y' (cập nhật theo repo).",
+      "expected_output": "Import alpha-skill, beta-skill (mới). zeta-skill giống hệt → giữ nguyên. diff-skill ⚠️ khác phiên bản → cập nhật local theo repo. Báo cáo phân biệt rõ 3 nhóm: mới / đã có / cập nhật.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "check-skill-sync",
+      "prompt": "Kiểm tra đồng bộ skill giữa máy và repo skills. Lưu ý test harness: hãy coi <SANDBOX>\\sandbox-status là thư mục dự án làm việc của bạn (cwd), repo skills là <SANDBOX>\\sandbox-status\\skills-repo, và chỉ dùng scope Project. TUYỆT ĐỐI không được đọc hay sửa bất cứ thứ gì ngoài <SANDBOX>.",
+      "expected_output": "Bảng so sánh 3 trạng thái ✅ 🆕 ⚠️: only-local-skill (chỉ ở local), only-repo-skill (chỉ ở repo), diff-skill (khác phiên bản). Kết luận ngắn gọn đủ 3 lệch. Không sửa gì.",
+      "files": []
+    }
+  ]
+}
