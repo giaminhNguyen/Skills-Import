@@ -32,7 +32,7 @@ Chỉ **hai** thứ bắt buộc phải chốt với người dùng:
 
 Còn lại có mặc định tốt, **đừng hỏi**: đệ quy (có) · lưu `.wav` cạnh `.txt` · `fp32` · 700 ký tự/đoạn · 6 luồng · nghỉ 0,35 giây giữa đoạn.
 
-Trước khi hỏi, đọc `state.json` cạnh SKILL.md (nếu có) để lấy thư mục + giọng lần trước; người dùng gõ trống ("gen audio") thì đề xuất chạy tiếp đúng chỗ cũ. Chạy xong ghi lại `state.json`.
+Trước khi hỏi, đọc `state.json` cạnh SKILL.md (nếu có) để lấy thư mục + giọng + `vieneu_root` lần trước; người dùng gõ trống ("gen audio") thì đề xuất chạy tiếp đúng chỗ cũ. Chạy xong ghi lại `state.json`.
 
 ## 3. Tiền kiểm — BẮT BUỘC trước khi chạy
 
@@ -65,7 +65,7 @@ print(len(txts), len(miss), f"{chars:,}", f"{h:.1f}h audio", f"{h*0.46:.1f}h x�
 Không bao giờ chạy một tiến trình xuyên suốt nhiều file. Luôn dùng `--once` trong vòng lặp ngoài, chạy nền:
 
 ```bash
-cd /c/Users/ming/Apps/VieNeu-TTS
+cd "$VIENEU"                      # gốc VieNeu-TTS, xem mục 11
 while true; do
   PYTHONIOENCODING=utf-8 ./.venv/Scripts/python.exe queue_runner.py \
       "<thư mục>" --recursive --once --voice "<giọng>" --threads 6 >> "$LOG" 2>&1
@@ -134,8 +134,29 @@ Tính lại phần còn thiếu bằng đoạn code mục 3 — số file `.txt`
 
 **Chạy tiếp**: gọi lại y hệt lệnh mục 4. Phần đã xong tự được bỏ qua — không cần cờ gì thêm.
 
-## 11. Script
+## 11. Script và môi trường
 
-`scripts/queue_runner.py` cạnh file này (bản gốc ở `C:\Users\ming\Apps\VieNeu-TTS\queue_runner.py`). Đã chạy thật, đừng viết lại logic. Xem `--help` cho toàn bộ cờ.
+`scripts/queue_runner.py` cạnh file này. Đã chạy thật, đừng viết lại logic. Xem `--help` cho toàn bộ cờ.
 
-Môi trường: `C:\Users\ming\Apps\VieNeu-TTS\.venv\Scripts\python.exe` (cài editable, có sẵn `vieneu` + `soundfile`).
+**Không hardcode đường dẫn VieNeu-TTS.** Tìm theo thứ tự sau, dừng ngay khi có kết quả:
+
+1. `vieneu_root` trong `state.json` — dùng lại nếu `<root>/.venv/Scripts/python.exe` còn tồn tại
+2. Chỗ hay gặp (tức thì):
+
+```bash
+for d in ~/Apps/VieNeu-TTS ~/VieNeu-TTS /c/VieNeu-TTS /d/VieNeu-TTS /e/VieNeu-TTS; do
+  [ -x "$d/.venv/Scripts/python.exe" ] && echo "$d" && break
+done
+```
+
+3. Quét đĩa (~30 giây, chỉ khi hai bước trên trượt):
+
+```bash
+find ~ /c /d /e -maxdepth 6 -path "*/VieNeu-TTS/.venv/Scripts/python.exe" 2>/dev/null | head -3
+```
+
+Cắt đuôi `/.venv/Scripts/python.exe` được gốc → gán vào `$VIENEU` dùng ở mục 4. Ra nhiều kết quả thì hỏi người dùng chọn; không ra kết quả nào thì hỏi thẳng đường dẫn — **đừng đoán, đừng tự cài lại**.
+
+Tìm được rồi thì ghi `vieneu_root` vào `state.json` để lần sau khỏi quét.
+
+Venv cài editable, có sẵn `vieneu` + `soundfile`. Nếu có `python.exe` mà thiếu package thì báo người dùng, không tự `pip install`.
