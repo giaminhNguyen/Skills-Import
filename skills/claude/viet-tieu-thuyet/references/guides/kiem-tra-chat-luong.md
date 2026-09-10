@@ -5,12 +5,13 @@ Rút gọn từ các hệ thống "polish nhiều trục" thành 7 mục thiết
 | # | Trục | Câu hỏi tự kiểm tra |
 |---|---|---|
 | 1 | **HOOK** | Chương có mở đầu đủ hấp dẫn trong 2–3 câu đầu không? Có kết bằng hook (trừ chương cuối) không? Hook có trùng kiểu với 1–2 chương liền trước không? |
-| 2 | **VOICE** | Mỗi nhân vật có nói/hành động đúng tính cách và tật ngôn ngữ đã định trong `00-nhan-vat.md` không? |
+| 2 | **VOICE** | Mỗi nhân vật có nói/hành động đúng tính cách và tật ngôn ngữ đã định trong `00-nhan-vat.md` (khuôn: `../templates/nhan-vat-template.md`) không? |
 | 3 | **LOGIC** | Có con số/ngày tháng/tên riêng nào mâu thuẫn với `fact_ledger` không? Có vi phạm `guard_rails` nào không? |
 | 4 | **NHỊP ĐỘ** | Tỷ lệ thoại/miêu tả có đúng tông thể loại không? Đoạn văn có quá dài, gây khó đọc không? |
 | 5 | **VĂN AI** | Có lặp cụm sáo rỗng, liệt kê cảm xúc trực tiếp, hay cấu trúc câu lặp lại máy móc không? |
 | 6 | **TIẾN TRIỂN** | Chương có đóng góp gì mới (thông tin, xung đột, thay đổi trạng thái nhân vật) hay chỉ là một cảnh tĩnh không cần thiết? |
-| 7 | **THỂ LOẠI** | Chương có đúng quy ước/motif của thể loại đã chọn ở Pha 1 không (xem `genres.md`)? |
+| 7 | **THỂ LOẠI** | Chương có đúng quy ước/motif của thể loại đã chọn ở Pha 1 không (xem `the-loai.md`)? |
+| 8 | **VĂN PHONG** | Chương có bám đúng thang `van_phong` trong project-state.json không? Chất TQ đủ đậm theo mức đã đặt, VÀ tiếng Việt mượt (≥90, không có câu dịch máy vụng như "đem nàng hại chết", "quy lai")? Xem `van-phong.md`. |
 
 ## Khi phát hiện lỗi
 

@@ -39,26 +39,12 @@ import sys
 import unicodedata
 
 
-
-# Console Windows mac dinh cp1252 -> print tieng Viet se crash. Ep UTF-8.
-if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 # ---------- Tiện ích ----------
 
-def has_token(text_noacc: str, tok: str) -> bool:
-    """Khớp trọn tiếng, không khớp chuỗi con: 'no' không được khớp vào 'nong'."""
-    return re.search(r"(?<![a-z0-9])" + re.escape(tok) + r"(?![a-z0-9])", text_noacc) is not None
-
-
 def strip_accents(s: str) -> str:
-    """Bỏ dấu tiếng Việt để so khớp linh hoạt.
-
-    NFD không tách được nét ngang của "đ" (nó là chữ cái riêng, không phải dấu),
-    nên phải đổi tay — thiếu bước này thì "đồng" ra "đong" chứ không phải "dong".
-    """
+    """Bỏ dấu tiếng Việt để so khớp linh hoạt."""
     nfkd = unicodedata.normalize("NFD", s)
-    out = "".join(c for c in nfkd if unicodedata.category(c) != "Mn").lower()
-    return out.replace("đ", "d")
+    return "".join(c for c in nfkd if unicodedata.category(c) != "Mn").lower()
 
 
 VN_NUMBER_WORDS = {
@@ -70,14 +56,6 @@ VN_NUMBER_WORDS = {
 
 # Đơn vị tiền/số hay đi kèm, dùng để nhận diện "số cứng"
 MONEY_UNITS = ["triệu", "tỷ", "tỉ", "nghìn", "ngàn", "đồng", "vnđ", "usd", "đô"]
-
-# Đơn vị đứng chung cho mọi khoản tiền/thời gian nên KHÔNG được dùng làm từ khóa
-# nhận diện thực thể: nếu lấy "đồng" làm khóa cho "Số tiền nợ" thì mọi con số có
-# chữ "đồng" trong truyện (ổ bánh mì 25 nghìn đồng) đều bị báo là mâu thuẫn.
-GENERIC_UNIT_TOKENS = {
-    "trieu", "ty", "ti", "nghin", "ngan", "dong", "vnd", "usd", "do",
-    "nam", "thang", "ngay", "gio", "phut", "lan", "cai", "chiec", "nguoi",
-}
 
 
 def extract_numbers_with_context(text: str, window: int = 25):
@@ -150,15 +128,8 @@ def check_fact_ledger(state, chapters):
             continue
         ledger_norm = {normalize_number_token(n) for n in ledger_nums}
 
-        # Từ khóa ngữ cảnh lấy từ CẢ key LẪN value của ledger: key thường ghi
-        # "Số tiền nợ" trong khi chương viết "khoản nợ", nên chỉ soi key là
-        # trượt. Ngưỡng 2 ký tự vì âm tiết tiếng Việt đa số ngắn ("nợ", "số").
-        # ponytail: khớp theo token trần, có thể báo thừa khi hai thực thể cùng
-        # đơn vị nằm gần nhau; nâng lên khớp cụm/thực thể nếu nhiễu quá nhiều.
-        key_tokens = [t for t in strip_accents(key + " " + str(val)).split()
-                      if len(t) >= 2 and not t[0].isdigit()
-                      and t not in GENERIC_UNIT_TOKENS]
-        key_tokens = sorted(set(key_tokens))
+        # tạo từ khóa ngữ cảnh từ KEY của ledger (bỏ dấu, tách từ)
+        key_tokens = [t for t in strip_accents(key).split() if len(t) >= 3]
         if not key_tokens:
             continue
 
@@ -167,12 +138,12 @@ def check_fact_ledger(state, chapters):
                 text = f.read()
             text_noacc = strip_accents(text)
             # chỉ soi những chương có nhắc tới chủ đề của key
-            if not any(has_token(text_noacc, tok) for tok in key_tokens):
+            if not any(tok in text_noacc for tok in key_tokens):
                 continue
             for item in extract_numbers_with_context(text):
                 ctx_noacc = strip_accents(item["context"])
                 # con số này nằm gần một từ khóa của key?
-                if not any(has_token(ctx_noacc, tok) for tok in key_tokens):
+                if not any(tok in ctx_noacc for tok in key_tokens):
                     continue
                 # nếu có đơn vị tiền/tuổi hoặc key nói về tiền/tuổi
                 num_norm = normalize_number_token(item["value_raw"])
