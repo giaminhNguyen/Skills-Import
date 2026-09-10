@@ -1,0 +1,18 @@
+{
+  "skill": "viet-tieu-thuyet",
+  "mo_ta": "Bộ test kiểm tra skill có được kích hoạt đúng ngữ cảnh không (should_trigger=true) và không kích hoạt sai (should_trigger=false).",
+  "cases": [
+    {"prompt": "Viết cho tôi một tiểu thuyết trinh thám 20 chương", "should_trigger": true, "ly_do": "Yêu cầu viết truyện dài rõ ràng"},
+    {"prompt": "Tôi muốn viết truyện về một cô gái chết rồi sống lại thời đi học", "should_trigger": true, "ly_do": "Mô tả motif trọng sinh dù không dùng từ 'trọng sinh'"},
+    {"prompt": "Giúp tôi lên outline cho truyện ngôn tình tổng tài", "should_trigger": true, "ly_do": "Lên dàn ý truyện dài"},
+    {"prompt": "Viết tiếp chương sau đi", "should_trigger": true, "ly_do": "Tiếp tục truyện đang viết dở"},
+    {"prompt": "Tôi thích truyện kiểu kênh Xài Não Trọng Sinh trên youtube, viết giúp tôi một truyện như vậy", "should_trigger": true, "ly_do": "Tham chiếu nguồn cảm hứng thay vì tên thể loại"},
+    {"prompt": "Xây giúp tôi hệ thống nhân vật và thế giới cho một truyện tiên hiệp", "should_trigger": true, "ly_do": "World-building + nhân vật cho truyện dài"},
+    {"prompt": "Truyện tôi đang viết bị mâu thuẫn chi tiết giữa các chương, giúp tôi rà lại", "should_trigger": true, "ly_do": "Kiểm tra tính nhất quán truyện dài"},
+    {"prompt": "Viết cho tôi một bài thơ về mùa thu", "should_trigger": false, "ly_do": "Thơ ngắn, không phải tiểu thuyết nhiều chương"},
+    {"prompt": "Dịch đoạn văn này sang tiếng Anh giúp tôi", "should_trigger": false, "ly_do": "Tác vụ dịch thuật, không liên quan sáng tác truyện"},
+    {"prompt": "Viết một email xin nghỉ phép", "should_trigger": false, "ly_do": "Văn bản hành chính ngắn"},
+    {"prompt": "Tóm tắt nội dung truyện Số Đỏ của Vũ Trọng Phụng", "should_trigger": false, "ly_do": "Tóm tắt tác phẩm có sẵn, không phải sáng tác mới"},
+    {"prompt": "Viết một đoạn quảng cáo ngắn cho quán cà phê", "should_trigger": false, "ly_do": "Copywriting ngắn, không phải truyện"}
+  ]
+}
