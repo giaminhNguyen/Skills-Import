@@ -12,6 +12,10 @@ import argparse
 import sys
 
 
+
+# Console Windows mac dinh cp1252 -> print tieng Viet se crash. Ep UTF-8.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 def count_words(path: str) -> int:
     with open(path, "r", encoding="utf-8") as f:
         text = f.read()

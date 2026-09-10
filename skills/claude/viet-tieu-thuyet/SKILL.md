@@ -11,7 +11,7 @@ Skill này gộp lại cơ chế hiệu quả nhất được đúc kết từ n
 
 ```
 Pha 0: Khởi tạo
-   → đọc project-state.json + user-preferences.md nếu có
+   → xác lập thư mục dự án + đọc project-state.json / user-preferences.md nếu có
 Pha 1: Chọn thể loại + Hỏi đáp phân lớp
    → tham khảo references/genres.md
 Pha 2: Xây nền tảng (thế giới, nhân vật, guard rails, dàn ý)
@@ -29,8 +29,9 @@ Chế độ viết (serial / song song / nhóm agent) xem `references/writing-mo
 
 ## Pha 0 — Khởi tạo
 
-1. Kiểm tra thư mục làm việc có `project-state.json` không (dự án đang viết dở). Nếu có → hỏi người dùng: tiếp tục chương tiếp theo, xem lại/sửa chương gần nhất, hay bắt đầu dự án mới.
-2. Kiểm tra `user-preferences.md` (skill tự ghi sau mỗi dự án) → áp dụng ngầm các sở thích đã biết (thể loại hay viết, độ dài chương ưa thích, giọng văn), không hỏi lại từ đầu trừ khi người dùng muốn đổi.
+1. **Xác lập thư mục dự án** — mọi file của truyện (`00-nhan-vat.md`, `01-the-gioi.md`, `02-dan-y.md`, `project-state.json`, các chương) nằm chung trong một thư mục. Nếu người dùng chưa chỉ định, hỏi một câu ngắn rồi tạo thư mục theo tên truyện. Ghi nhớ đường dẫn này — mọi lệnh script ở Pha 3/4 đều nhận nó qua `--dir`.
+2. Kiểm tra thư mục làm việc có `project-state.json` không (dự án đang viết dở). Nếu có → hỏi người dùng: tiếp tục chương tiếp theo, xem lại/sửa chương gần nhất, hay bắt đầu dự án mới.
+3. Kiểm tra `user-preferences.md` (skill tự ghi sau mỗi dự án) → áp dụng ngầm các sở thích đã biết (thể loại hay viết, độ dài chương ưa thích, giọng văn), không hỏi lại từ đầu trừ khi người dùng muốn đổi.
 
 ## Pha 1 — Chọn thể loại + Hỏi đáp phân lớp
 
@@ -67,11 +68,16 @@ Với mỗi chương:
 2. **Viết chương** theo `references/chapter-craft.md` — kỹ thuật mở đầu, nhịp độ, hook, giữ giọng nhân vật, tránh "văn AI", điều chỉnh theo tông của thể loại đã chọn ở Pha 1.
 3. **Tự kiểm tra** theo `references/quality-checklist.md` trước khi đưa cho người dùng — tự sửa nếu phát hiện lỗi, không cần hỏi lại. Nếu môi trường chạy được Python và đã có nhiều chương, **chạy script kiểm tra nhất quán tự động** để bắt mâu thuẫn dữ kiện mà mắt thường dễ bỏ sót:
    ```bash
-   python3 scripts/consistency_check.py --dir <thư-mục-dự-án>
+   python "<thư-mục-skill>/scripts/consistency_check.py" --dir "<thư-mục-dự-án>"
    ```
    Script này đọc `project-state.json` và quét toàn bộ chương, báo cáo: số liệu mâu thuẫn với fact ledger, guard rail bị vi phạm, vé số tới hạn chưa trả, và nhân vật lạ chưa khai. Sửa các lỗi mức 🔴 NẶNG trước khi giao chương.
-4. **Cập nhật** `project-state.json`: tóm tắt chương vừa viết, thay đổi trạng thái nhân vật, sự kiện/con số mới cần nhớ (đưa vào fact ledger), vé số mới cài hoặc đã trả.
-5. Hỏi người dùng: viết tiếp, chỉnh sửa chương vừa rồi, hay dừng lại.
+4. **Kiểm tra độ dài** so với mục tiêu của thể loại (xem `genres.md`) — viết hụt/lố là lỗi hay gặp khi viết liên tục nhiều chương:
+   ```bash
+   python "<thư-mục-skill>/scripts/check_wordcount.py" "<file-chương>" --min 2000 --max 3500
+   ```
+   Script đếm theo âm tiết cách nhau bởi khoảng trắng — đúng với cách đếm "từ" thông dụng của truyện mạng tiếng Việt.
+5. **Cập nhật** `project-state.json`: tóm tắt chương vừa viết, thay đổi trạng thái nhân vật, sự kiện/con số mới cần nhớ (đưa vào fact ledger), vé số mới cài hoặc đã trả.
+6. Hỏi người dùng: viết tiếp, chỉnh sửa chương vừa rồi, hay dừng lại.
 
 **Nguyên tắc góp ý:** khi nhận xét bản thảo (của người dùng hoặc của chính mình), luôn chỉ ra **vị trí cụ thể** ("đoạn thoại giữa chương, chỗ nhân vật A nói với B") kèm lý do, không nhận xét chung chung kiểu "hay đấy"/"cần cải thiện thêm".
 
@@ -83,11 +89,15 @@ Với mỗi chương:
   - **Word** — dùng docx skill nếu có.
   - **EPUB** (ebook đọc trên điện thoại/máy đọc sách) — chạy script có sẵn, không cần cài thêm thư viện:
     ```bash
-    python3 scripts/build_epub.py --dir <thư-mục-dự-án> --title "Tên truyện" --author "Tên tác giả"
+    python "<thư-mục-skill>/scripts/build_epub.py" --dir "<thư-mục-dự-án>" --title "Tên truyện" --author "Tên tác giả"
     ```
     Script tự nhận diện các file chương theo thứ tự, lấy tiêu đề từ dòng đầu mỗi file, sinh bìa + mục lục + CSS hỗ trợ tiếng Việt, và đóng gói đúng chuẩn EPUB 3. Sau đó dùng `present_files` để giao file `.epub` cho người dùng.
 
 ---
+
+## Chạy script cho đúng
+
+`<thư-mục-skill>` là thư mục chứa chính file SKILL.md này (ví dụ `~/.claude/skills/viet-tieu-thuyet`), **không phải** thư mục truyện — hai thư mục này khác nhau, nên luôn viết đường dẫn script đầy đủ thay vì `scripts/...`. Trên Windows dùng `python`; nếu máy chỉ có `python3` (macOS/Linux) thì thay bằng `python3`. Không có Python thì bỏ qua bước script và tự kiểm tra tay theo `references/quality-checklist.md`.
 
 ## Tài liệu tham khảo
 
@@ -104,3 +114,4 @@ Với mỗi chương:
 - `scripts/build_epub.py` — Đóng gói bộ truyện thành ebook EPUB 3 hợp lệ (chỉ dùng thư viện chuẩn, không cần cài gì). Dùng ở Pha 4.
 - `scripts/check_wordcount.py` — Kiểm tra số từ một chương so với khoảng mục tiêu. Dùng ở Pha 3.
 - `scripts/trigger-eval.json` — Bộ test triggering của skill (12 ca), dùng để kiểm chứng/đo lại khi chỉnh sửa description.
+- `scripts/test_consistency_check.py` — Self-check của `consistency_check.py` (dựng dự án giả, khẳng định bắt đúng mâu thuẫn và không báo nhầm). Chạy sau mỗi lần sửa script kiểm tra.

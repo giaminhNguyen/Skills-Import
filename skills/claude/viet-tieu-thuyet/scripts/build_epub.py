@@ -30,6 +30,10 @@ import unicodedata
 import zipfile
 
 
+
+# Console Windows mac dinh cp1252 -> print tieng Viet se crash. Ep UTF-8.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 def natural_key(s):
     return [int(t) if t.isdigit() else t.lower()
             for t in re.split(r"(\d+)", s)]
@@ -191,7 +195,8 @@ def build(dir_path, title, author, out_path):
 
 def strip_accents(s):
     nfkd = unicodedata.normalize("NFD", s)
-    return "".join(c for c in nfkd if unicodedata.category(c) != "Mn")
+    out = "".join(c for c in nfkd if unicodedata.category(c) != "Mn")
+    return out.replace("đ", "d").replace("Đ", "D")
 
 
 def main():
@@ -212,6 +217,9 @@ def main():
         title = "Truyện chưa đặt tên"
 
     out = args.out or (re.sub(r"\W+", "-", strip_accents(title)).strip("-").lower() + ".epub")
+    # Mặc định đặt file cạnh các chương, không rơi ra thư mục đang đứng
+    if not os.path.isabs(out) and os.path.dirname(out) == "":
+        out = os.path.join(args.dir, out)
     build(args.dir, title, args.author, out)
 
 
