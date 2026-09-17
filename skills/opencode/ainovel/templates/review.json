@@ -1,0 +1,20 @@
+{
+  "chapter": 1,
+  "scope": "chapter",
+  "dimensions": [
+    {"dimension": "consistency", "score": 0, "comment": ""},
+    {"dimension": "character", "score": 0, "comment": ""},
+    {"dimension": "pacing", "score": 0, "comment": ""},
+    {"dimension": "continuity", "score": 0, "comment": ""},
+    {"dimension": "foreshadow", "score": 0, "comment": ""},
+    {"dimension": "hook", "score": 0, "comment": ""},
+    {"dimension": "aesthetic", "score": 0, "comment": ""}
+  ],
+  "issues": [],
+  "contract_status": null,
+  "contract_misses": [],
+  "contract_notes": null,
+  "verdict": "accept",
+  "summary": "",
+  "affected_chapters": []
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "characters": [
+    {
+      "id": "char-001",
+      "name": "",
+      "aliases": [],
+      "role": "",
+      "traits": [],
+      "goals": [],
+      "fears": [],
+      "voice": [],
+      "state": {},
+      "last_seen_chapter": 0
+    }
+  ]
+}

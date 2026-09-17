@@ -1,0 +1,12 @@
+{
+  "chapter": 1,
+  "pass": false,
+  "contract": {"status": "met", "missing": [], "violations": []},
+  "world_rule_conflicts": [],
+  "character_conflicts": [],
+  "timeline_conflicts": [],
+  "location_conflicts": [],
+  "foreshadow_conflicts": [],
+  "relationship_conflicts": [],
+  "required_fixes": []
+}

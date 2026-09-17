@@ -1,0 +1,16 @@
+{
+  "chapter": 1,
+  "title": "",
+  "purpose": "",
+  "outcome": "",
+  "events": [],
+  "character_ids": [],
+  "character_state_deltas": [],
+  "relationship_deltas": [],
+  "world_rule_ids": [],
+  "foreshadow": {"setup": [], "advance": [], "payoff": []},
+  "timeline": [],
+  "locations": [],
+  "style_stats": {},
+  "relevant_previous_chapters": []
+}

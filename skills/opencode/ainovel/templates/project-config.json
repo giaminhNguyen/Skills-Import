@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "language": "vi",
+  "target_chapters": null,
+  "chapter_word_target": 2500,
+  "review_mode": false,
+  "max_review_retries": 2,
+  "context_budget_chars": 45000,
+  "recent_chapter_window": 3,
+  "writing_preferences": {}
+}

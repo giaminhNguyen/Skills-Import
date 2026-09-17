@@ -1,0 +1,13 @@
+interface:
+  display_name: AI Novel Workflow
+  short_description: Agent-native long-form novel workflow with rolling planning and
+    checkpoints
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

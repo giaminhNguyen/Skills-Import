@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "id": "fs-001",
+      "setup": "",
+      "status": "planned",
+      "setup_chapter": null,
+      "target_payoff_window": null,
+      "payoff_chapter": null,
+      "notes": ""
+    }
+  ]
+}

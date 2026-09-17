@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "current_volume": 1,
+  "current_arc": "1.1",
+  "volumes": [
+    {
+      "id": "v01",
+      "title": "",
+      "objective": "",
+      "status": "active",
+      "arcs": [
+        {
+          "id": "v01-a01",
+          "title": "",
+          "objective": "",
+          "status": "active",
+          "chapter_range": [1, 0],
+          "detail_level": "detailed"
+        }
+      ]
+    }
+  ]
+}

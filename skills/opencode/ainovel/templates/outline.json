@@ -1,0 +1,16 @@
+{
+  "arc_id": "v01-a01",
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "",
+      "purpose": "",
+      "must_happen": [],
+      "must_not_happen": [],
+      "character_ids": [],
+      "world_rule_ids": [],
+      "foreshadow_actions": [],
+      "ending_hook": ""
+    }
+  ]
+}

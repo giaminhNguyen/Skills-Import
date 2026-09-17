@@ -1,0 +1,21 @@
+{
+  "chapter": 1,
+  "title": "",
+  "purpose": "",
+  "pov": "",
+  "time": "",
+  "location": "",
+  "opening_state": "",
+  "beats": [],
+  "must_happen": [],
+  "must_not_happen": [],
+  "character_ids": [],
+  "character_state_deltas": [],
+  "relationship_ids": [],
+  "world_rule_ids": [],
+  "foreshadow": {"setup": [], "advance": [], "payoff": []},
+  "continuity_anchors": [],
+  "relevant_chapters": [],
+  "ending_hook": "",
+  "style_targets": []
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "relationships": [
+    {
+      "id": "rel-001",
+      "a": "char-001",
+      "b": "char-002",
+      "type": "",
+      "state": "",
+      "history": []
+    }
+  ]
+}
