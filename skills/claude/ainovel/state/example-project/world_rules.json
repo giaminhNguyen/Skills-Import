@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "rules": [
+    {"id": "rule-001", "kind": "hard", "rule": "", "exceptions": [], "established_chapter": null}
+  ]
+}

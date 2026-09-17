@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "project_id": "",
+  "slug": "",
+  "status": "initializing",
+  "flow": "planning",
+  "foundation_complete": false,
+  "current_volume": 1,
+  "current_arc": "1.1",
+  "current_chapter": 1,
+  "current_step": "foundation",
+  "last_completed_step": null,
+  "review_mode": false,
+  "review_permits": 0,
+  "max_review_retries": 2,
+  "target_chapters": null,
+  "language": "vi",
+  "context_budget_chars": 45000,
+  "updated_at": ""
+}

@@ -1,0 +1,14 @@
+{
+  "id": "cp-example",
+  "seq": 42,
+  "scope": {
+    "kind": "chapter",
+    "chapter": 7
+  },
+  "step": "chapter_drafted",
+  "artifact": "drafts/007.md",
+  "digest": "<sha256-of-artifact>",
+  "occurred_at": "2026-01-01T00:00:00Z",
+  "next_step": "consistency",
+  "details": {}
+}
