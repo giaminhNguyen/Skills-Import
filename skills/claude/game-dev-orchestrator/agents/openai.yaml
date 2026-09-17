@@ -1,0 +1,14 @@
+interface:
+  display_name: Game Dev Orchestrator
+  short_description: Routes game-dev tasks through design, implementation, debugging,
+    review, testing, performance, assets, builds, and release gates; also bootstraps
+    and refreshes a read-only Unity project knowledge pack.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true
