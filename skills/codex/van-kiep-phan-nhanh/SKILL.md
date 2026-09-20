@@ -13,6 +13,15 @@ Nhận một truyện nguyên văn, đường dẫn tới truyện, hoặc một
 
 Mặc định tạo **một ý tưởng hoàn chỉnh cho mỗi truyện**. Khi người dùng yêu cầu nhiều ý tưởng cho một truyện, mỗi ý tưởng phải dùng một biến số hoặc nhân vật trung tâm khác nhau. Với danh sách truyện, chủ động thay đổi cơ chế giữa các truyện khi phù hợp để tránh lặp công thức.
 
+## Gói ý tưởng có ref bền vững
+
+Khi người dùng yêu cầu tạo một thư mục riêng chứa các prompt ý tưởng từ tệp truyện gốc, tạo thư mục `ref/` bên trong thư mục đầu ra và sao chép tệp nguồn vào đó. Dùng bản sao này làm nguồn canon lâu dài; không để các prompt chỉ trỏ tới thư mục tạm hoặc tệp đính kèm có thể biến mất.
+
+- Không ghi đè một tệp ref đã tồn tại và khác nội dung; dừng để báo xung đột.
+- Mỗi prompt phải mở đầu bằng dòng: `**Nguồn truyện gốc cần đọc:** [đường dẫn ref] — mục “Phù Thuỷ Audio Số [số] | [tên truyện]”.` Thay nhãn “Phù Thuỷ Audio Số” bằng tiêu đề/mục thực tế khi nguồn dùng cách đánh dấu khác.
+- Tham chiếu phải trỏ đúng tệp ref và đúng phần truyện nguồn, để một agent tiếp nhận có thể đọc lại canon mà không cần lịch sử cuộc trò chuyện.
+- Nếu người dùng chỉ giao tạo prompt ý tưởng, chỉ tạo thư mục ref, bản sao nguồn và các prompt được yêu cầu. Không viết truyện hoàn chỉnh, outline, review, TTS/audio hay file phụ.
+
 ## Neo vào truyện gốc
 
 Trước khi lên ý tưởng, xác định thầm lặng: nhân vật và thân phận, quan hệ, bối cảnh, mâu thuẫn cốt lõi, chuỗi biến cố, bí mật, kết cục và các điểm có thể rẽ nhánh.
@@ -45,6 +54,8 @@ Mỗi ý tưởng phải cho thấy rõ: ai là người mang biến số; họ 
 Với mỗi truyện, trả lời bằng tiếng Việt với cấu trúc sau. Viết cô đọng nhưng đủ cụ thể để có thể đưa ý tưởng sang skill viết truyện tiếp theo.
 
 ```markdown
+**Nguồn truyện gốc cần đọc:** [đường dẫn ref] — mục “Phù Thuỷ Audio Số [số] | [tên truyện]”.
+
 ## [Tên nhánh mới]
 
 - **Truyện gốc:** [tên truyện]
