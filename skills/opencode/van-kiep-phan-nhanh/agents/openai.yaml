@@ -1,0 +1,6 @@
+interface:
+  display_name: "Vạn Kiếp Phân Nhánh"
+  short_description: "Sinh nhánh truyện từ cốt truyện gốc"
+  default_prompt: "Use $van-kiep-phan-nhanh to tạo ý tưởng nhánh mới từ truyện tôi cung cấp."
+policy:
+  allow_implicit_invocation: true
