@@ -1,0 +1,13 @@
+interface:
+  display_name: Story TTS Adapter
+  short_description: Adapt finished stories for selectable TTS profiles and create
+    engine-safe chunks.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

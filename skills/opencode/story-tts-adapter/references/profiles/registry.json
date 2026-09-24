@@ -1,0 +1,6 @@
+{
+  "default_profile": "vieneu-v3-turbo-story",
+  "profiles": {
+    "vieneu-v3-turbo-story": "vieneu-v3-turbo-story.json"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "profile_id": "vieneu-v3-turbo-story",
+  "display_name": "VieNeu-TTS v3 Turbo - Story Narration",
+  "engine": "VieNeu-TTS v3 Turbo",
+  "language": [
+    "vi",
+    "en-vi"
+  ],
+  "engine_facts": {
+    "sample_rate_hz": 48000,
+    "default_max_chars": 256,
+    "normalizes_text_internally": true,
+    "phonemizes_text_internally": true,
+    "style_parameter": "deprecated_ignored",
+    "reading_style_source": "selected preset voice or cloned reference voice",
+    "emotion_cues_supported": true,
+    "emotion_cues_experimental": true,
+    "supported_emotion_cues": [
+      "[cười]",
+      "[thở dài]",
+      "[hắng giọng]"
+    ]
+  },
+  "adapter_policy": {
+    "preferred_sentence_chars_min": 45,
+    "preferred_sentence_chars_max": 150,
+    "soft_sentence_chars_max": 200,
+    "merge_tiny_sentences_below_chars": 18,
+    "prefer_one_main_idea_per_sentence": true,
+    "preserve_paragraph_rhythm": true,
+    "avoid_markdown": true,
+    "avoid_parenthetical_asides": true,
+    "avoid_excessive_ellipsis": true
+  },
+  "chunking": {
+    "hard_max_chars": 256,
+    "preferred_chunk_chars_min": 90,
+    "preferred_chunk_chars_max": 220,
+    "avoid_chunk_below_chars": 24,
+    "split_priority": [
+      "paragraph",
+      "sentence",
+      "clause",
+      "hard"
+    ]
+  },
+  "normalization": {
+    "engine_handles_basic_normalization": true,
+    "engine_handles_phonemization": true,
+    "adapter_expand_ambiguous_abbreviations": true,
+    "adapter_normalize_urls": true,
+    "adapter_normalize_unspoken_symbols": true,
+    "adapter_rewrite_numbers_only_when_reading_is_ambiguous": true
+  },
+  "dialogue": {
+    "keep_quotes": true,
+    "merge_tiny_reply_with_narration": true,
+    "speaker_labels": false,
+    "preserve_dialogue_identity": true
+  },
+  "inline_cues": {
+    "supported": true,
+    "experimental": true,
+    "allowed": [
+      "[cười]",
+      "[thở dài]",
+      "[hắng giọng]"
+    ],
+    "default_usage": "off",
+    "rule": "Use only when directly supported by the story; never invent a performance event merely to make audio more expressive."
+  },
+  "synthesis": {
+    "preferred_input_mode": "full_text_internal_chunking",
+    "fallback_input_mode": "external_chunks",
+    "note": "VieNeu v3 Turbo can normalize and chunk long text internally. story_tts.txt is the preferred direct input; chunks/ are provided for external orchestration or engines/wrappers that require pre-splitting."
+  },
+  "provenance": [
+    {
+      "source": "https://github.com/pnnbao97/VieNeu-TTS/blob/main/config.yaml",
+      "type": "config",
+      "claim": "Default text chunk setting is 256 characters; v3 Turbo is the default 48 kHz model."
+    },
+    {
+      "source": "https://github.com/pnnbao97/VieNeu-TTS/blob/main/src/vieneu/v3turbo.py",
+      "type": "code",
+      "claim": "v3 Turbo normalizes/chunks text with max_chars default 256; style is deprecated and ignored, with reading style derived from the reference voice."
+    },
+    {
+      "source": "https://github.com/pnnbao97/VieNeu-TTS/blob/main/README.vi.md",
+      "type": "documentation",
+      "claim": "v3 Turbo supports experimental inline cues [cười], [thở dài], and [hắng giọng], and uses the reference voice for reading style."
+    }
+  ]
+}
